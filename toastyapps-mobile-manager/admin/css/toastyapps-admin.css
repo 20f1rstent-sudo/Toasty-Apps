@@ -1,0 +1,909 @@
+/**
+ * ToastyApps Mobile Manager - Admin Styles
+ *
+ * @package ToastyApps_Mobile_Manager
+ */
+
+/* ==========================================================================
+   General Styles
+   ========================================================================== */
+
+.toastyapps-wrap {
+    max-width: 1400px;
+}
+
+.toastyapps-wrap h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toastyapps-wrap h1 .dashicons {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+}
+
+.toastyapps-title {
+    font-size: 23px;
+    font-weight: 400;
+    margin: 0;
+    padding: 9px 0 4px;
+    line-height: 1.3;
+}
+
+.required {
+    color: #dc3232;
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.toastyapps-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.toastyapps-card h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 1.3em;
+}
+
+.toastyapps-card.sticky {
+    position: sticky;
+    top: 46px;
+}
+
+/* ==========================================================================
+   Dashboard
+   ========================================================================== */
+
+.toastyapps-dashboard {
+    margin-top: 20px;
+}
+
+.toastyapps-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.toastyapps-stat-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.toastyapps-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+}
+
+.stat-icon.active-devices {
+    background: linear-gradient(135deg, #1a73e8, #4285f4);
+}
+
+.stat-icon.media-reels {
+    background: linear-gradient(135deg, #ea4335, #ff6b6b);
+}
+
+.stat-icon.locations {
+    background: linear-gradient(135deg, #34a853, #4caf50);
+}
+
+.stat-icon.notifications {
+    background: linear-gradient(135deg, #fbbc04, #ffca28);
+}
+
+.stat-content h3 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.stat-content p {
+    margin: 5px 0 0;
+    color: #646970;
+    font-size: 13px;
+}
+
+.toastyapps-dashboard-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 1200px) {
+    .toastyapps-dashboard-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.quick-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 15px;
+    background: #f6f7f7;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    color: #1d2327;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.quick-action-btn:hover {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+}
+
+.quick-action-btn .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Status Checks */
+.status-checks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.status-checks li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.status-checks li:last-child {
+    border-bottom: none;
+}
+
+.status-checks .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.status-ok .dashicons {
+    color: #00a32a;
+}
+
+.status-warning .dashicons {
+    color: #dba617;
+}
+
+.status-error .dashicons {
+    color: #d63638;
+}
+
+/* API Config */
+.api-config .config-item {
+    margin-bottom: 15px;
+}
+
+.api-config label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #1d2327;
+}
+
+.api-key-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.api-key-display code {
+    flex: 1;
+    padding: 8px 12px;
+    background: #f0f0f1;
+    word-break: break-all;
+}
+
+/* Device Type Badge */
+.device-type {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.device-type-ios {
+    background: #f0f0f1;
+    color: #1d2327;
+}
+
+.device-type-android {
+    background: #dff0d8;
+    color: #3c763d;
+}
+
+/* API Stats */
+.api-stats .stat-item {
+    text-align: center;
+    padding: 15px;
+    background: #f6f7f7;
+    border-radius: 4px;
+}
+
+.api-stats .stat-number {
+    display: block;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.api-stats .stat-label {
+    color: #646970;
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   Hero Image
+   ========================================================================== */
+
+.hero-image-wrapper {
+    text-align: center;
+}
+
+.hero-image-preview {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    border: 2px dashed #c3c4c7;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f7f7;
+}
+
+.hero-image-preview img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero-image-preview .placeholder {
+    text-align: center;
+    padding: 40px;
+    color: #646970;
+}
+
+.hero-image-preview .placeholder .dashicons {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+}
+
+.hero-image-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.hero-image-tips {
+    background: #f6f7f7;
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin-top: 20px;
+}
+
+.hero-image-tips h3 {
+    margin-top: 0;
+}
+
+.hero-image-tips ul {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Phone Preview
+   ========================================================================== */
+
+.phone-preview {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.phone-frame {
+    width: 280px;
+    background: #1d2327;
+    border-radius: 36px;
+    padding: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.phone-notch {
+    width: 100px;
+    height: 24px;
+    background: #1d2327;
+    border-radius: 0 0 16px 16px;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.phone-screen {
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.app-header {
+    background: #1a73e8;
+    color: #fff;
+    padding: 40px 20px 20px;
+    text-align: center;
+}
+
+.app-header h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.app-header small {
+    opacity: 0.8;
+    font-size: 12px;
+}
+
+.app-hero {
+    height: 120px;
+    background: #f0f0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-placeholder {
+    color: #c3c4c7;
+}
+
+.preview-placeholder .dashicons {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+.app-content-preview {
+    padding: 15px;
+}
+
+.preview-card {
+    height: 60px;
+    background: linear-gradient(135deg, #1a73e8, #34a853);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.preview-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.preview-btn {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.preview-text {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.preview-text p {
+    margin: 0;
+}
+
+.preview-alert {
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Media Reels
+   ========================================================================== */
+
+.media-upload-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.media-preview {
+    width: 200px;
+    min-height: 120px;
+    background: #f6f7f7;
+    border: 2px dashed #c3c4c7;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.media-preview img,
+.media-preview video {
+    max-width: 100%;
+    height: auto;
+}
+
+.thumbnail-preview {
+    width: 120px;
+    min-height: 90px;
+}
+
+.drag-handle {
+    cursor: grab;
+    color: #c3c4c7;
+}
+
+.drag-handle:hover {
+    color: #1d2327;
+}
+
+.sortable-list tr.ui-sortable-helper {
+    background: #f6f7f7;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.no-thumbnail {
+    width: 80px;
+    height: 60px;
+    background: #f6f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.no-thumbnail .dashicons {
+    color: #c3c4c7;
+}
+
+.no-video-warning {
+    display: block;
+    color: #dba617;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.no-video-warning .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   Notifications
+   ========================================================================== */
+
+.toastyapps-notifications-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    .toastyapps-notifications-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.notification-stats {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background: #f6f7f7;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.notification-stats .stat {
+    text-align: center;
+}
+
+.notification-stats .stat-number {
+    display: block;
+    font-size: 36px;
+    font-weight: 600;
+    color: #1a73e8;
+}
+
+.notification-stats .stat-label {
+    color: #646970;
+}
+
+.notification-preview-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.notification-preview {
+    background: #f6f7f7;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.preview-notification {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 12px;
+    max-width: 400px;
+}
+
+.preview-icon {
+    width: 40px;
+    height: 40px;
+    background: #1a73e8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.preview-icon .dashicons {
+    color: #fff;
+}
+
+.preview-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.preview-app-name {
+    font-size: 11px;
+    color: #646970;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.preview-title {
+    font-weight: 600;
+    color: #1d2327;
+    margin-top: 2px;
+}
+
+.preview-body {
+    font-size: 13px;
+    color: #646970;
+    margin-top: 2px;
+    word-break: break-word;
+}
+
+.preview-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notification-result {
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-result.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.notification-result.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.notification-body-preview {
+    font-size: 12px;
+    color: #646970;
+    margin-top: 4px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.badge-primary {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.success-rate {
+    font-weight: 600;
+}
+
+.success-rate.high {
+    color: #00a32a;
+}
+
+.success-rate.medium {
+    color: #dba617;
+}
+
+.success-rate.low {
+    color: #d63638;
+}
+
+/* ==========================================================================
+   Branding
+   ========================================================================== */
+
+.toastyapps-branding-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    .toastyapps-branding-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.logo-preview {
+    width: 100px;
+    height: 100px;
+}
+
+.logo-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Color picker adjustments */
+.wp-picker-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* ==========================================================================
+   Settings
+   ========================================================================== */
+
+.large-code {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #f0f0f1;
+    word-break: break-all;
+    max-width: 500px;
+}
+
+.api-key-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.method-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.method-badge.get {
+    background: #d4edda;
+    color: #155724;
+}
+
+.method-badge.post {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.setup-steps {
+    background: #f6f7f7;
+    padding: 20px 20px 20px 40px;
+    border-radius: 4px;
+}
+
+.setup-steps li {
+    margin-bottom: 10px;
+}
+
+.coordinates-fields {
+    display: flex;
+    gap: 10px;
+}
+
+.coordinates-fields input {
+    width: 150px !important;
+}
+
+/* ==========================================================================
+   Empty States
+   ========================================================================== */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state .dashicons {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: #c3c4c7;
+    margin-bottom: 20px;
+}
+
+.empty-state h2 {
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #646970;
+    margin-bottom: 20px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #646970;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.button .dashicons {
+    vertical-align: middle;
+    margin-right: 3px;
+    margin-top: -2px;
+}
+
+.button-large .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Spinning animation */
+.spinning {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 782px) {
+    .toastyapps-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .media-upload-field {
+        flex-direction: column;
+    }
+
+    .media-preview {
+        width: 100%;
+    }
+
+    .phone-frame {
+        width: 240px;
+    }
+
+    .coordinates-fields {
+        flex-direction: column;
+    }
+
+    .coordinates-fields input {
+        width: 100% !important;
+    }
+}
