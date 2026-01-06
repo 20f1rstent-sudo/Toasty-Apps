@@ -163,33 +163,96 @@ settings_errors( 'toastyapps_messages' );
                 </div>
             </div>
 
-            <!-- Live Preview -->
+            <!-- Live Preview - Matches Actual iOS App Design -->
             <div class="toastyapps-branding-preview">
                 <div class="toastyapps-card sticky">
                     <h2><?php esc_html_e( 'Live Preview', 'toastyapps-mobile-manager' ); ?></h2>
+                    <?php
+                    $hero_image_id = get_option( 'toastyapps_hero_image_id', 0 );
+                    $hero_image_url = $hero_image_id ? wp_get_attachment_url( $hero_image_id ) : '';
+                    $logo_url = $branding['logo_id'] ? wp_get_attachment_url( $branding['logo_id'] ) : '';
+
+                    // Get first location for badge
+                    $locations = get_posts( array(
+                        'post_type'      => 'toastyapps_location',
+                        'post_status'    => 'publish',
+                        'posts_per_page' => 1,
+                        'orderby'        => 'menu_order',
+                        'order'          => 'ASC',
+                    ) );
+                    $location_name = ! empty( $locations ) ? $locations[0]->post_title : 'Central Coast';
+                    ?>
                     <div class="phone-preview">
                         <div class="phone-frame">
                             <div class="phone-notch"></div>
-                            <div class="phone-screen" id="preview-screen" style="background-color: <?php echo esc_attr( $branding['background_color'] ); ?>;">
-                                <div class="app-header" id="preview-header" style="background-color: <?php echo esc_attr( $branding['primary_color'] ); ?>;">
-                                    <h4 id="preview-app-name" style="color: #fff;"><?php echo esc_html( $branding['app_name'] ); ?></h4>
-                                    <?php if ( $branding['tagline'] ) : ?>
-                                        <small id="preview-tagline" style="color: rgba(255,255,255,0.8);"><?php echo esc_html( $branding['tagline'] ); ?></small>
+                            <div class="phone-screen" id="preview-screen">
+                                <!-- Hero Image -->
+                                <div class="app-hero" id="phone-preview-hero">
+                                    <?php if ( $hero_image_url ) : ?>
+                                        <img src="<?php echo esc_url( $hero_image_url ); ?>" alt="Hero Preview">
+                                    <?php else : ?>
+                                        <div class="preview-placeholder">
+                                            <span class="dashicons dashicons-format-image"></span>
+                                        </div>
                                     <?php endif; ?>
                                 </div>
+
+                                <!-- App Icon (Overlapping) -->
+                                <div class="app-icon-wrapper">
+                                    <div class="app-icon" id="preview-app-icon">
+                                        <?php if ( $logo_url ) : ?>
+                                            <img src="<?php echo esc_url( $logo_url ); ?>" alt="App Icon">
+                                        <?php else : ?>
+                                            <span class="dashicons dashicons-store"></span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+                                <!-- Content Area -->
                                 <div class="app-content-preview">
-                                    <div class="preview-card" style="background: linear-gradient(135deg, <?php echo esc_attr( $branding['primary_color'] ); ?>, <?php echo esc_attr( $branding['secondary_color'] ); ?>);">
-                                        <span style="color: #fff;">Featured</span>
+                                    <div class="preview-app-name" id="preview-app-name"><?php echo esc_html( $branding['app_name'] ); ?></div>
+                                    <div class="preview-tagline" id="preview-tagline"><?php echo esc_html( $branding['tagline'] ? $branding['tagline'] : 'Free Cannabis Delivery' ); ?></div>
+
+                                    <div class="preview-location-badge">
+                                        <span class="dashicons dashicons-location"></span>
+                                        <span><?php echo esc_html( $location_name ); ?></span>
                                     </div>
+
                                     <div class="preview-buttons">
-                                        <button class="preview-btn primary" style="background-color: <?php echo esc_attr( $branding['primary_color'] ); ?>; color: #fff;">Primary</button>
-                                        <button class="preview-btn secondary" style="background-color: <?php echo esc_attr( $branding['secondary_color'] ); ?>; color: #fff;">Secondary</button>
+                                        <button class="preview-btn primary" id="preview-btn-primary" style="background-color: <?php echo esc_attr( $branding['primary_color'] ); ?>;">Shop Now</button>
+                                        <button class="preview-btn secondary">Call Now 805-310-1078</button>
                                     </div>
-                                    <div class="preview-text" style="color: <?php echo esc_attr( $branding['text_color'] ); ?>;">
-                                        <p>Sample text content</p>
+
+                                    <div class="preview-social-icons">
+                                        <span class="social-icon instagram">●</span>
+                                        <span class="social-icon facebook">●</span>
+                                        <span class="social-icon">✕</span>
                                     </div>
-                                    <div class="preview-alert" style="background-color: <?php echo esc_attr( $branding['accent_color'] ); ?>; color: #fff;">
-                                        Alert/Notification
+
+                                    <div class="preview-license">C10-0001383-LIC</div>
+                                </div>
+
+                                <!-- Tab Bar -->
+                                <div class="preview-tab-bar">
+                                    <div class="preview-tab active" style="color: <?php echo esc_attr( $branding['primary_color'] ); ?>;">
+                                        <span class="dashicons dashicons-admin-home"></span>
+                                        <span>Home</span>
+                                    </div>
+                                    <div class="preview-tab">
+                                        <span class="dashicons dashicons-cart"></span>
+                                        <span>Shop</span>
+                                    </div>
+                                    <div class="preview-tab">
+                                        <span class="dashicons dashicons-video-alt3"></span>
+                                        <span>Media</span>
+                                    </div>
+                                    <div class="preview-tab">
+                                        <span class="dashicons dashicons-games"></span>
+                                        <span>Arcade</span>
+                                    </div>
+                                    <div class="preview-tab">
+                                        <span class="dashicons dashicons-email"></span>
+                                        <span>Inbox</span>
                                     </div>
                                 </div>
                             </div>

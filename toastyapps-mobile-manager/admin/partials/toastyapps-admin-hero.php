@@ -83,20 +83,31 @@ settings_errors( 'toastyapps_messages' );
         </p>
     </form>
 
-    <!-- Phone Preview -->
+    <!-- Phone Preview - Matches Actual iOS App Design -->
     <div class="toastyapps-card">
         <h2><?php esc_html_e( 'App Preview', 'toastyapps-mobile-manager' ); ?></h2>
+        <?php
+        $branding = get_option( 'toastyapps_branding', array() );
+        $app_name = isset( $branding['app_name'] ) ? $branding['app_name'] : get_bloginfo( 'name' );
+        $tagline = isset( $branding['tagline'] ) ? $branding['tagline'] : 'Free Cannabis Delivery';
+        $logo_id = isset( $branding['logo_id'] ) ? $branding['logo_id'] : 0;
+        $logo_url = $logo_id ? wp_get_attachment_url( $logo_id ) : '';
+
+        // Get first location for badge
+        $locations = get_posts( array(
+            'post_type'      => 'toastyapps_location',
+            'post_status'    => 'publish',
+            'posts_per_page' => 1,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
+        ) );
+        $location_name = ! empty( $locations ) ? $locations[0]->post_title : 'Central Coast';
+        ?>
         <div class="phone-preview">
             <div class="phone-frame">
                 <div class="phone-notch"></div>
                 <div class="phone-screen">
-                    <div class="app-header">
-                        <?php
-                        $branding = get_option( 'toastyapps_branding', array() );
-                        $app_name = isset( $branding['app_name'] ) ? $branding['app_name'] : get_bloginfo( 'name' );
-                        ?>
-                        <h4><?php echo esc_html( $app_name ); ?></h4>
-                    </div>
+                    <!-- Hero Image -->
                     <div class="app-hero" id="phone-preview-hero">
                         <?php if ( $hero_image_url ) : ?>
                             <img src="<?php echo esc_url( $hero_image_url ); ?>" alt="Hero Preview">
@@ -106,9 +117,64 @@ settings_errors( 'toastyapps_messages' );
                             </div>
                         <?php endif; ?>
                     </div>
+
+                    <!-- App Icon (Overlapping) -->
+                    <div class="app-icon-wrapper">
+                        <div class="app-icon">
+                            <?php if ( $logo_url ) : ?>
+                                <img src="<?php echo esc_url( $logo_url ); ?>" alt="App Icon">
+                            <?php else : ?>
+                                <span class="dashicons dashicons-store"></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <!-- Content Area -->
                     <div class="app-content-preview">
-                        <div class="preview-card"></div>
-                        <div class="preview-card"></div>
+                        <div class="preview-app-name" id="preview-app-name"><?php echo esc_html( $app_name ); ?></div>
+                        <div class="preview-tagline" id="preview-tagline"><?php echo esc_html( $tagline ); ?></div>
+
+                        <div class="preview-location-badge">
+                            <span class="dashicons dashicons-location"></span>
+                            <span><?php echo esc_html( $location_name ); ?></span>
+                        </div>
+
+                        <div class="preview-buttons">
+                            <button class="preview-btn primary">Shop Now</button>
+                            <button class="preview-btn secondary">Call Now 805-310-1078</button>
+                        </div>
+
+                        <div class="preview-social-icons">
+                            <span class="social-icon instagram">●</span>
+                            <span class="social-icon facebook">●</span>
+                            <span class="social-icon">✕</span>
+                        </div>
+
+                        <div class="preview-license">C10-0001383-LIC</div>
+                    </div>
+
+                    <!-- Tab Bar -->
+                    <div class="preview-tab-bar">
+                        <div class="preview-tab active">
+                            <span class="dashicons dashicons-admin-home"></span>
+                            <span>Home</span>
+                        </div>
+                        <div class="preview-tab">
+                            <span class="dashicons dashicons-cart"></span>
+                            <span>Shop</span>
+                        </div>
+                        <div class="preview-tab">
+                            <span class="dashicons dashicons-video-alt3"></span>
+                            <span>Media</span>
+                        </div>
+                        <div class="preview-tab">
+                            <span class="dashicons dashicons-games"></span>
+                            <span>Arcade</span>
+                        </div>
+                        <div class="preview-tab">
+                            <span class="dashicons dashicons-email"></span>
+                            <span>Inbox</span>
+                        </div>
                     </div>
                 </div>
             </div>
