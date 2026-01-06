@@ -1,1 +1,1 @@
-*.zip
+# Ignore build artifacts except the distributable ZIP
