@@ -325,9 +325,19 @@ class ToastyApps_API {
      * @return WP_REST_Response Response object.
      */
     public function get_hero_image( $request ) {
-        $hero_image_id = get_option( 'toastyapps_hero_image_id', 0 );
+        $hero_image_id = intval( get_option( 'toastyapps_hero_image_id', 0 ) );
 
-        if ( ! $hero_image_id ) {
+        // Check if we have a valid ID
+        if ( $hero_image_id < 1 ) {
+            return rest_ensure_response( array(
+                'success' => true,
+                'data'    => null,
+            ) );
+        }
+
+        // Verify the attachment exists
+        $attachment = get_post( $hero_image_id );
+        if ( ! $attachment || 'attachment' !== $attachment->post_type ) {
             return rest_ensure_response( array(
                 'success' => true,
                 'data'    => null,
@@ -335,19 +345,28 @@ class ToastyApps_API {
         }
 
         $image_url = wp_get_attachment_url( $hero_image_id );
+
+        // If URL is false, attachment might be broken
+        if ( ! $image_url ) {
+            return rest_ensure_response( array(
+                'success' => true,
+                'data'    => null,
+            ) );
+        }
+
         $image_meta = wp_get_attachment_metadata( $hero_image_id );
+        $mime_type = get_post_mime_type( $hero_image_id );
 
         // Get different sizes
         $sizes = array();
         if ( $image_meta && isset( $image_meta['sizes'] ) ) {
             $upload_dir = wp_upload_dir();
-            $base_url = trailingslashit( $upload_dir['baseurl'] );
             $base_path = trailingslashit( dirname( get_attached_file( $hero_image_id ) ) );
-            $base_path = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $base_path );
+            $base_url = str_replace( $upload_dir['basedir'], $upload_dir['baseurl'], $base_path );
 
             foreach ( $image_meta['sizes'] as $size => $data ) {
                 $sizes[ $size ] = array(
-                    'url'    => $base_path . $data['file'],
+                    'url'    => $base_url . $data['file'],
                     'width'  => $data['width'],
                     'height' => $data['height'],
                 );
@@ -359,8 +378,9 @@ class ToastyApps_API {
             'data'    => array(
                 'id'          => $hero_image_id,
                 'url'         => $image_url,
-                'width'       => isset( $image_meta['width'] ) ? $image_meta['width'] : null,
-                'height'      => isset( $image_meta['height'] ) ? $image_meta['height'] : null,
+                'width'       => isset( $image_meta['width'] ) ? (int) $image_meta['width'] : null,
+                'height'      => isset( $image_meta['height'] ) ? (int) $image_meta['height'] : null,
+                'mime_type'   => $mime_type,
                 'sizes'       => $sizes,
                 'alt'         => get_post_meta( $hero_image_id, '_wp_attachment_image_alt', true ),
                 'updated_at'  => get_the_modified_date( 'c', $hero_image_id ),
