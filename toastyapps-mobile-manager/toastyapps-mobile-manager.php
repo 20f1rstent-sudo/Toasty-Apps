@@ -3,7 +3,7 @@
  * Plugin Name: ToastyApps Mobile Manager
  * Plugin URI: https://toastyapps.com
  * Description: Manage your mobile app content directly from your WordPress admin dashboard. Perfect for dispensary owners who want to control their app's hero images, media reels, push notifications, and branding.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Toasty Apps
  * Author URI: https://toastyapps.com
  * License: GPL-2.0+
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin Constants
  */
-define( 'TOASTYAPPS_VERSION', '1.0.0' );
+define( 'TOASTYAPPS_VERSION', '1.1.0' );
 define( 'TOASTYAPPS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TOASTYAPPS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'TOASTYAPPS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
